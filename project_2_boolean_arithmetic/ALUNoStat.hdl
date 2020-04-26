@@ -1,0 +1,18 @@
+CHIP ALUNoStat {
+    IN x[16], y[16], zx, nx, zy, ny, f, no;
+    OUT out[16];
+
+    PARTS:
+
+    Mux16(a=x, b=false, sel=zx, out=zxX);
+    Mux16(a=y, b=false, sel=zy, out=zyY);
+    Not16(in=zxX, out=nZxX);
+    Not16(in=zyY, out=nZyY);
+    Mux16(a=zxX, b=nZxX, sel=nx, out=nxZxX);
+    Mux16(a=zyY, b=nZyY, sel=ny, out=nyZyY);
+    And16(a=nxZxX, b=nyZyY, out=and);
+    Add16(a=nxZxX, b=nyZyY, out=add);
+    Mux16(a=and, b=add, sel=f, out=fAndAdd);
+    Not16(in=fAndAdd, out=nFAndAdd);
+    Mux16(a=fAndAdd, b=nFAndAdd, sel=no, out=out);
+}
