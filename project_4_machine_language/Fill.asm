@@ -1,0 +1,60 @@
+    @color
+    M=0
+    @WAITWHITE
+    D=A
+    @last
+    M=D
+(PAINT)
+    @SCREEN
+    D=A
+    @px
+    M=D
+(LOOP)
+    @px
+    D=M
+    @24575
+    D=D-A
+    @last
+    A=M
+    D;JGT
+    @color
+    D=M
+    @px
+    A=M
+    M=D
+    @px
+    M=M+1
+    @LOOP
+    0;JMP
+(WHITE)
+    @color
+    M=0
+    @WAITWHITE
+    D=A
+    @last
+    M=D
+    @PAINT
+    0;JMP
+(BLACK)
+    @color
+    M=-1
+    @WAITBLACK
+    D=A
+    @last
+    M=D
+    @PAINT
+    0;JMP
+(WAITWHITE)
+    @KBD
+    D=M
+    @BLACK
+    D;JGT
+    @WAITWHITE
+    0;JMP
+(WAITBLACK)
+    @KBD
+    D=M
+    @WHITE
+    D;JEQ
+    @WAITBLACK
+    0;JMP

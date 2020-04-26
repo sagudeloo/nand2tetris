@@ -1,0 +1,26 @@
+    @6
+    D=A
+    @n
+    M=D
+    @7
+    D=A
+    @i
+    M=D-1
+    @mult
+    M=0
+(LOOP)
+    @i
+    D=M
+    @END
+    D;JLT
+    @n
+    D=M
+    @mult
+    M=M+D
+    @i
+    M=M-1
+    @LOOP
+    0;JMP
+(END)
+    @END
+    0;JMP
